@@ -26,6 +26,6 @@ resource "aws_iam_policy_attachment" "imaging-platform-terraform-AmazonEC2FullAc
 
     policy_arn = "arn:aws:iam::aws:policy/AmazonEC2FullAccess"
 
-    roles = ["${aws_iam_role.imaging-platform-terraform.id}"]
+    roles = ["${aws_iam_role.imaging-platform-terraform.unique_id}"]
 
 }

@@ -10,7 +10,13 @@ resource "aws_s3_bucket" "imaging-platform-terraform-remote-backend"{
 
   tags {
 
-      Name = "imaging-platform-terraform-remote-backend"
+    Name = "imaging-platform-terraform-remote-backend"
+
+  }
+
+  versioning {
+
+    enabled = true
 
   }
 

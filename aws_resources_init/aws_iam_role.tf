@@ -1,3 +1,11 @@
+resource "aws_iam_instance_profile" "imaging-platform-terraform" {
+
+  name  = "imaging-platform-terraform"
+
+  role = "${aws_iam_role.role.name}"
+
+}
+
 resource "aws_iam_role" "imaging-platform-terraform" {
 
   assume_role_policy = <<EOF

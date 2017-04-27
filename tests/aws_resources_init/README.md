@@ -22,3 +22,5 @@ terraform taint -module=test_aws_resources_init aws_subnet.imaging-platform-terr
 ```
 ## Remote backend
 The S3 bucket that will store terraform state information must be created ahead of time.
+
+`terraform refresh` will update any output variables if there have been changes to the infrastructure.

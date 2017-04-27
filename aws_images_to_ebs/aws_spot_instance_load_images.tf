@@ -106,7 +106,7 @@ resource "aws_volume_attachment" "imaging-platform-terraform-images-att" {
 
   device_name = "/dev/bucket"
 
-  instance_id = "${aws_spot_instance_request.imaging-platform-terraform-images.id}"
+  instance_id = "${aws_spot_instance_request.imaging-platform-terraform-load-images.id}"
 
   volume_id   = "${aws_ebs_volume.imaging-platform-terraform-images.id}"
 

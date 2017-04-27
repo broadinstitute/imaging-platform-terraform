@@ -12,6 +12,8 @@ module "cp_demo_aws_images_to_ebs" {
 
   script_name = "load_images.sh"
 
+  size = "100"
+
   source = "github.com/broadinstitute/imaging-platform-terraform/aws_images_to_ebs"
 
   vpc_key = "aws_resources_init/terraform.tfstate"

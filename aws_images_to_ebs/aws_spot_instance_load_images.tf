@@ -12,6 +12,7 @@ variable "script_name" {}
 
 variable "vpc_key" {}
 
+
 data "terraform_remote_state" "vpc" {
 
   backend = "s3"
@@ -26,35 +27,13 @@ data "terraform_remote_state" "vpc" {
 
 }
 
+
 resource "aws_spot_instance_request" "imaging-platform-terraform-load-images" {
-
-  spot_price              = "${var.spot_price}"
-
-  spot_type               = "one-time"
-
-  wait_for_fulfillment    = true
-
   ami                     = "${var.ami}"
 
   associate_public_ip_address = true
 
   availability_zone       = "${var.availability_zone}"
-
-  iam_instance_profile    = "${data.terraform_remote_state.vpc.iam_role_id}"
-
-  instance_type           = "${var.instance_type}"
-
-  key_name                = "${var.aws_key_name}"
-
-  subnet_id               = "${data.terraform_remote_state.vpc.subnet_id}"
-
-  vpc_security_group_ids  = ["${data.terraform_remote_state.vpc.sg_id}"]
-
-  tags {
-
-    Name = "imaging-platform-terraform-load-images"
-
-  }
 
   connection {
 
@@ -65,6 +44,12 @@ resource "aws_spot_instance_request" "imaging-platform-terraform-load-images" {
     host                = "${aws_spot_instance_request.imaging-platform-terraform-load-images.public_ip}"
 
   }
+
+  iam_instance_profile    = "${data.terraform_remote_state.vpc.iam_role_id}"
+
+  instance_type           = "${var.instance_type}"
+
+  key_name                = "${var.aws_key_name}"
 
   provisioner "file" {
 
@@ -100,7 +85,24 @@ resource "aws_spot_instance_request" "imaging-platform-terraform-load-images" {
 
   }
 
+  spot_price              = "${var.spot_price}"
+
+  spot_type               = "one-time"
+
+  subnet_id               = "${data.terraform_remote_state.vpc.subnet_id}"
+
+  tags {
+
+    Name = "imaging-platform-terraform-load-images"
+
+  }
+
+  vpc_security_group_ids  = ["${data.terraform_remote_state.vpc.sg_id}"]
+
+  wait_for_fulfillment    = true
+
 }
+
 
 resource "aws_volume_attachment" "imaging-platform-terraform-images-att" {
 

@@ -15,3 +15,10 @@ terraform apply
 terraform init
 terraform apply
 ```
+
+# Troubleshooting
+## Recreating a resource
+1. Use `terraform taint`. For example:
+```bash
+terraform taint -module=test_aws_resources_init aws_subnet.imaging-platform-terraform
+```

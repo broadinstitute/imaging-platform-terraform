@@ -15,7 +15,9 @@ variable "vpc_key" {}
 
 data "terraform_remote_state" "vpc" {
 
-  backend = "s3" {
+  backend ="s3"
+
+  config {
 
     bucket = "imaging-platform-terraform-remote-backend"
 

@@ -15,13 +15,21 @@ variable "vpc_key" {}
 
 data "terraform_remote_state" "vpc" {
 
-  backend = "s3"
-
-  config {
+  backend = "s3" {
 
     bucket = "imaging-platform-terraform-remote-backend"
 
     key = "aws_resources_init/terraform.tfstate"
+
+    region = "${var.region}"
+
+  }
+
+  config {
+
+
+
+
 
   }
 

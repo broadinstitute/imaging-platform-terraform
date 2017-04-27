@@ -1,3 +1,17 @@
+variable "aws_credentials" {}
+
+variable "aws_key_name" {}
+
+variable "github_key" {}
+
+variable "github_pub" {}
+
+variable "private_key" {}
+
+variable "script_name" {}
+
+variable "vpc_key" {}
+
 data "terraform_remote_state" "vpc" {
 
   backend = "s3"
@@ -12,7 +26,7 @@ data "terraform_remote_state" "vpc" {
 
 }
 
-resource "aws_spot_instance_request" "imaging-platform-terraform-cellprofiler-demo-load-images" {
+resource "aws_spot_instance_request" "imaging-platform-terraform-load-images" {
 
   spot_price              = "${var.spot_price}"
 
@@ -38,7 +52,7 @@ resource "aws_spot_instance_request" "imaging-platform-terraform-cellprofiler-de
 
   tags {
 
-    Name = "imaging-platform-terraform-cellprofiler-demo-load-images"
+    Name = "imaging-platform-terraform-load-images"
 
   }
 
@@ -48,7 +62,7 @@ resource "aws_spot_instance_request" "imaging-platform-terraform-cellprofiler-de
 
     private_key         = "${file("${var.private_key}")}"
 
-    host                = "${aws_spot_instance_request.imaging-platform-terraform-cellprofiler-demo-load-images.public_ip}"
+    host                = "${aws_spot_instance_request.imaging-platform-terraform-load-images.public_ip}"
 
   }
 
@@ -80,7 +94,7 @@ resource "aws_spot_instance_request" "imaging-platform-terraform-cellprofiler-de
 
     scripts = [
 
-      "load_images.sh"
+      "${var.script_name}"
 
       ]
 
@@ -88,12 +102,12 @@ resource "aws_spot_instance_request" "imaging-platform-terraform-cellprofiler-de
 
 }
 
-resource "aws_volume_attachment" "imaging-platform-terraform-cellprofiler-demo-att" {
+resource "aws_volume_attachment" "imaging-platform-terraform-images-att" {
 
   device_name = "/dev/bucket"
 
-  instance_id = "${aws_spot_instance_request.imaging-platform-terraform-cellprofiler-demo.id}"
+  instance_id = "${aws_spot_instance_request.imaging-platform-terraform-images.id}"
 
-  volume_id   = "${aws_ebs_volume.imaging-platform-terraform-cellprofiler-demo.id}"
+  volume_id   = "${aws_ebs_volume.imaging-platform-terraform-images.id}"
 
 }

@@ -6,16 +6,14 @@ terraform get
 ``` bash
 terraform plan
 ```
-1. Create the state files on the local machine.
-``` bash
-terraform apply
-```
-1. Move the state files to S3.
+1. Set the state files location to S3.
 ``` bash
 terraform init
+```
+1. Create the resources
+``` bash
 terraform apply
 ```
-
 # Troubleshooting
 ## Recreating a resource
 1. Use `terraform taint`. For example:

@@ -20,4 +20,4 @@ source activate awscli
 aws s3 cp --recursive "${S3DIR}" "${IMAGEDIR}" 
 source deactivate awscli
 
-shutdown -h now
+#sudo shutdown -h now

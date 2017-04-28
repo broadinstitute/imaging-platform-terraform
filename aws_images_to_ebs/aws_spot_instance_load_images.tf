@@ -112,7 +112,7 @@ resource "aws_spot_instance_request" "imaging-platform-terraform-load-images" {
 
 resource "aws_volume_attachment" "imaging-platform-terraform-images-att" {
 
-  device_name = "/dev/bucket"
+  device_name = "/dev/sdh"
 
   instance_id = "${aws_spot_instance_request.imaging-platform-terraform-load-images.id}"
 

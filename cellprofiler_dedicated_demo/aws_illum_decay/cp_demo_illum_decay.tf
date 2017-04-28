@@ -14,8 +14,6 @@ module "cp_demo_illum_decay" {
 
   private_key = "C:/Users/karhohs/Dropbox/AWS_credentials/karhohsbroadinstituteorg.pem"
 
-  size = "100"
-
   source = "github.com/broadinstitute/imaging-platform-terraform/aws_run_script"
 
   vpc_key = "aws_resources_init/terraform.tfstate"

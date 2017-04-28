@@ -4,7 +4,7 @@ terraform {
 
     bucket = "imaging-platform-terraform-remote-backend"
 
-    key    = "cellprofiler_dedicated_demo/aws_images_to_ebs/terraform.tfstate"
+    key    = "cellprofiler_dedicated_demo/aws_illum_decay/terraform.tfstate"
 
     region = "us-east-1"
 

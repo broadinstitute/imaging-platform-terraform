@@ -16,7 +16,6 @@ INPUTDIR="/home/ubuntu/${PROJECT}/pipelines"
 S3DIR="s3://imaging-platform/projects/${PROJECT}/${DATASET}/images/R44821_160612180003"
 
 # mount ebs
-sudo mkfs -t ext3 /dev/xvdh
 
 sudo mkdir /mnt/ebs
 

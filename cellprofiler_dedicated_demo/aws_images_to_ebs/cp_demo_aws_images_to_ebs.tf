@@ -12,7 +12,7 @@ module "cp_demo_aws_images_to_ebs" {
 
   private_key = "C:/Users/karhohs/Dropbox/AWS_credentials/karhohsbroadinstituteorg.pem"
 
-  size = "1"
+  size = "10"
 
   source = "github.com/broadinstitute/imaging-platform-terraform/aws_images_to_ebs_dedicated"
 

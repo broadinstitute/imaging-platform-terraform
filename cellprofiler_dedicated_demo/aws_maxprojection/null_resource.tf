@@ -24,7 +24,7 @@ resource "null_resource" "aws_maxprojection" {
 
       inline = [
 
-      "echo ${module.cp_demo_illum_decay.ebs_id} > ~/ebs_id.txt",
+      "echo ${module.cp_demo_aws_maxprojection.ebs_id} > ~/ebs_id.txt",
 
       ]
 

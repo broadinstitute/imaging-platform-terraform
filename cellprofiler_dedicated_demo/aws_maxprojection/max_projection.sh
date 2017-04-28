@@ -54,7 +54,8 @@ mkdir -p "${PROJECTPATH}"/workspace/status
 # prep for max_projection
 
 source activate als
-bash /home/ubuntu/2015_09_01_ALS_Therapeutics_WoolfLab_KasperRoet_BCH/software/als_parallel_maxproj.sh -g /home/ubuntu/als.cfg -j 63
+cd /home/ubuntu/2015_09_01_ALS_Therapeutics_WoolfLab_KasperRoet_BCH/software/
+bash als_parallel_maxproj.sh -g /home/ubuntu/als.cfg -j 63
 source deactivate als
 
 echo "Max Projection Complete!"

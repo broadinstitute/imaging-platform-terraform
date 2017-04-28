@@ -31,7 +31,6 @@ source deactivate awscli
 sudo umount /mnt/ebs
 
 source activate awscli
-#aws ec2 detach-volume --volume-id vol-1234567890abcdef0
-echo "The EBS_ID is..."
-cat ~/ebs_id.txt
+EBS_ID=$( cat ~/ebs_id.txt )
+aws ec2 detach-volume --volume-id "${EBS_ID}"
 source deactivate awscli

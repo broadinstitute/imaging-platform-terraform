@@ -22,29 +22,21 @@ resource "null_resource" "load_images" {
 
   provisioner "remote-exec" {
 
-    scripts = [
+      inline = [
 
-      "illum.sh"
+      "echo ${module.cp_demo_illum_decay.ebs_id} > ~/ebs_id.txt",
 
-    ]
+      ]
 
   }
 
   provisioner "remote-exec" {
 
-      inline = [
+    scripts = [
 
-      "source /home/ubuntu/.profile",
+      "illum.sh"
 
-      "source activate awscli",
-
-      "echo ${module.cp_demo_aws_images_to_ebs.ebs_id}",
-
-      "aws ec2 detach-volume --volume-id ${module.cp_demo_aws_images_to_ebs.ebs_id}",
-
-      "source deactivate awscli"
-
-      ]
+    ]
 
   }
 

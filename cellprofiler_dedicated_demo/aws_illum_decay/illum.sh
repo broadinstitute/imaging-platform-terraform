@@ -7,7 +7,7 @@ sleep 30
 source /home/ubuntu/.profile
 # Variables
 PROJECT="2015_09_01_ALS_Therapeutics_WoolfLab_KasperRoet_BCH"
-PROJECTPATH="/home/ubuntu/myproject/${PROJECT}"
+PROJECTPATH="/mnt/ebs/myproject/${PROJECT}"
 DATASET="test_plate2"
 IMAGEDIR="/mnt/ebs/projects/${PROJECT}/${DATASET}/images"
 PIPELINENAME="gcampillumination.cppipe"
@@ -52,14 +52,14 @@ mkdir -p "${PROJECTPATH}"/workspace/metadata
 mkdir -p "${PROJECTPATH}"/workspace/pipelines
 mkdir -p "${PROJECTPATH}"/workspace/software
 mkdir -p "${PROJECTPATH}"/workspace/status
-mkdir -p /home/ubuntu/tmp
+mkdir -p /mnt/ebs/tmp
 
 
 # Create the filelist
 mkdir -p "${PROJECTPATH}"/workspace/filelist/"${DATASET}"
 find "${IMAGEDIR}" -type f | tee "${PROJECTPATH}"/workspace/filelist/"${DATASET}"/filelist.txt > /dev/null
 
-cp /home/ubuntu/2015_09_01_ALS_Therapeutics_WoolfLab_KasperRoet_BCH/pipelines/gcampillumination.cppipe /home/ubuntu/myproject/2015_09_01_ALS_Therapeutics_WoolfLab_KasperRoet_BCH/workspace/pipelines/.
+cp /home/ubuntu/"${PROJECT}"/pipelines/gcampillumination.cppipe "${PROJECTPATH}"/workspace/pipelines/.
 
 source activate cellpainting_python_3
 docker run \
@@ -68,9 +68,9 @@ docker run \
     --volume="${PROJECTPATH}"/workspace/filelist/"${DATASET}":/filelist_dir \
     --volume="${INPUTDIR}":/input_dir \
     --volume="${PROJECTPATH}"/workspace/pipelines:/pipeline_dir \
-    --volume=/home/ubuntu/tmp/:/tmp_dir \
+    --volume=/mnt/ebs/tmp/:/tmp_dir \
     --volume="${PROJECTPATH}"/workspace:"${PROJECTPATH}"/workspace \
-    --volume=/home/ubuntu/bucket/:/home/ubuntu/bucket/ \
+    --volume=/mnt/ebs/:/mnt/ebs/ \
     shntnu/cellprofiler:bethac07_stable_fixzernikes \
     -i /input_dir \
     -p /pipeline_dir/"${PIPELINENAME}" \

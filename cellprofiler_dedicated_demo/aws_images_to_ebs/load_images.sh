@@ -9,15 +9,25 @@ source /home/ubuntu/.profile
 PROJECT="2015_09_01_ALS_Therapeutics_WoolfLab_KasperRoet_BCH"
 PROJECTPATH="/home/ubuntu/myproject/${PROJECT}"
 DATASET="test_plate2"
-IMAGEDIR="/home/ubuntu/bucket/projects/${PROJECT}/${DATASET}/images"
+IMAGEDIR="/mnt/ebs/projects/${PROJECT}/${DATASET}/images"
 PIPELINENAME="gcampillumination.cppipe"
 PIPELINE="../../pipelines/${PIPELINENAME}"
 INPUTDIR="/home/ubuntu/${PROJECT}/pipelines"
 S3DIR="s3://imaging-platform/projects/${PROJECT}/${DATASET}/images/R44821_160612180003"
+
+sudo mkfs -t ext3 /dev/xvdh
+
+sudo mkdir /mnt/ebs
+
+sudo mount /dev/xvdh /mnt/ebs
+
+sudo chown -R ubuntu /mnt/ebs
 
 echo 'retrieve images'
 source activate awscli
 aws s3 cp --recursive "${S3DIR}" "${IMAGEDIR}" 
 source deactivate awscli
 
-#sudo shutdown -h now
+sudo umount /mnt/ebs
+
+sudo shutdown -h now

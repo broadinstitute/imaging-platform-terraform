@@ -12,8 +12,6 @@ module "cp_demo_aws_images_to_ebs" {
 
   private_key = "C:/Users/karhohs/Dropbox/AWS_credentials/karhohsbroadinstituteorg.pem"
 
-  script_name = "load_images.sh"
-
   size = "100"
 
   source = "github.com/broadinstitute/imaging-platform-terraform/aws_images_to_ebs_dedicated"

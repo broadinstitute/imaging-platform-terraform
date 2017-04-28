@@ -10,8 +10,6 @@ variable "instance_type" {}
 
 variable "private_key" {}
 
-variable "script_name" {}
-
 variable "vpc_key" {}
 
 
@@ -41,11 +39,11 @@ resource "aws_instance" "imaging-platform-terraform-load-images" {
 
   connection {
 
-    user                = "ubuntu"
+    host                = "${aws_instance.imaging-platform-terraform-load-images.public_ip}"
 
     private_key         = "${file("${var.private_key}")}"
 
-    host                = "${aws_instance.imaging-platform-terraform-load-images.public_ip}"
+    user                = "ubuntu"
 
   }
 
@@ -76,16 +74,6 @@ resource "aws_instance" "imaging-platform-terraform-load-images" {
     source = "${var.github_pub}"
 
     destination = "~/.ssh/id_rsa_aws.pub"
-
-  }
-
-  provisioner "remote-exec" {
-
-    scripts = [
-
-      "${var.script_name}"
-
-      ]
 
   }
 

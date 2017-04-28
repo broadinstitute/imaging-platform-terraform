@@ -45,7 +45,7 @@ resource "aws_instance" "imaging-platform-terraform-load-images" {
 
     private_key         = "${file("${var.private_key}")}"
 
-    host                = "${aws_spot_instance_request.imaging-platform-terraform-load-images.public_ip}"
+    host                = "${aws_instance.imaging-platform-terraform-load-images.public_ip}"
 
   }
 
@@ -106,7 +106,7 @@ resource "aws_volume_attachment" "imaging-platform-terraform-images-att" {
 
   device_name = "/dev/bucket"
 
-  instance_id = "${aws_spot_instance_request.imaging-platform-terraform-load-images.id}"
+  instance_id = "${aws_instance.imaging-platform-terraform-load-images.id}"
 
   volume_id   = "${aws_ebs_volume.imaging-platform-terraform-images.id}"
 

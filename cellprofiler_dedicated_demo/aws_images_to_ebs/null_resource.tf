@@ -13,19 +13,13 @@ resource "null_resource" "load_images" {
   }
 
   provisioner "remote-exec" {
-    inline = [
-      "/usr/bin/sudo /usr/bin/chown core:core /mnt"
+
+    scripts = [
+
+      "${var.script_name}"
+
     ]
-  }
 
-  provisioner "file" {
-    source = "${path.module}/../docker-compose.yml"
-    destination = "/mnt/"
-  }
-
-  provisioner "file" {
-    source = "${path.module}/../services"
-    destination = "/mnt"
   }
 
 }

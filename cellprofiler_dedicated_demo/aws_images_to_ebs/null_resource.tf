@@ -16,7 +16,7 @@ resource "null_resource" "load_images" {
 
       inline = [
 
-        "EBS_ID=${module.cp_demo_aws_images_to_ebs.ebs_id}"
+      "echo ${module.cp_demo_aws_images_to_ebs.ebs_id} > ~/ebs_id.txt",
 
       ]
 

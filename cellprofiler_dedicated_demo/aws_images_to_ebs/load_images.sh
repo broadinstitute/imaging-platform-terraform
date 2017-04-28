@@ -32,8 +32,6 @@ sudo umount /mnt/ebs
 
 source activate awscli
 #aws ec2 detach-volume --volume-id vol-1234567890abcdef0
-echo "${EBS_ID}"
+echo "The EBS_ID is..."
+cat ~/ebs_id.txt
 source deactivate awscli
-
-
-sudo shutdown -h now

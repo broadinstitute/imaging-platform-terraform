@@ -16,9 +16,7 @@ module "cp_demo_aws_images_to_ebs" {
 
   size = "100"
 
-  source = "github.com/broadinstitute/imaging-platform-terraform/aws_images_to_ebs"
-
-  spot_price = "0.1"
+  source = "github.com/broadinstitute/imaging-platform-terraform/aws_images_to_ebs_dedicated"
 
   vpc_key = "aws_resources_init/terraform.tfstate"
 

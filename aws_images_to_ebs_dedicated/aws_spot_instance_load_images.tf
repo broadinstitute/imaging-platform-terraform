@@ -12,8 +12,6 @@ variable "private_key" {}
 
 variable "script_name" {}
 
-variable "spot_price" {}
-
 variable "vpc_key" {}
 
 
@@ -34,7 +32,7 @@ data "terraform_remote_state" "vpc" {
 }
 
 
-resource "aws_spot_instance_request" "imaging-platform-terraform-load-images" {
+resource "aws_instance" "imaging-platform-terraform-load-images" {
   ami                     = "${var.ami}"
 
   associate_public_ip_address = true
@@ -91,10 +89,6 @@ resource "aws_spot_instance_request" "imaging-platform-terraform-load-images" {
 
   }
 
-  spot_price              = "${var.spot_price}"
-
-  spot_type               = "one-time"
-
   subnet_id               = "${data.terraform_remote_state.vpc.subnet_id}"
 
   tags {
@@ -104,8 +98,6 @@ resource "aws_spot_instance_request" "imaging-platform-terraform-load-images" {
   }
 
   vpc_security_group_ids  = ["${data.terraform_remote_state.vpc.sg_id}"]
-
-  wait_for_fulfillment    = true
 
 }
 

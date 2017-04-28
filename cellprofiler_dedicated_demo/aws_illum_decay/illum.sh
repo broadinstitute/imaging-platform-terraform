@@ -96,6 +96,8 @@ source deactivate awscli
 # source activate awscli
 # parallel -j 60 :::: "${PROJECTPATH}/workspace/batchfiles/${DATASET}/human_usmc_batch_20170127/cp_docker_commands.txt"
 
+echo "Illum Complete!"
+
 sudo umount /mnt/ebs
 
 sudo shutdown -h now

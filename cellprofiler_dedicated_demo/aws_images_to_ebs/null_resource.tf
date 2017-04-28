@@ -14,6 +14,16 @@ resource "null_resource" "load_images" {
 
   provisioner "remote-exec" {
 
+      inline = [
+
+        "EBS_ID=${module.cp_demo_aws_images_to_ebs.ebs_id}"
+
+      ]
+
+  }
+
+  provisioner "remote-exec" {
+
     scripts = [
 
       "load_images.sh"

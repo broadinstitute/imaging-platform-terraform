@@ -6,7 +6,7 @@ resource "null_resource" "load_images" {
 
     host = "${module.cp_demo_aws_images_to_ebs.public_ip}"
 
-    private_key = "${var.private_key}"
+    private_key = "${file("${var.private_key}")}"
 
     user = "ubuntu"
 
@@ -16,7 +16,7 @@ resource "null_resource" "load_images" {
 
     scripts = [
 
-      "${var.script_name}"
+      "load_images.sh"
 
     ]
 

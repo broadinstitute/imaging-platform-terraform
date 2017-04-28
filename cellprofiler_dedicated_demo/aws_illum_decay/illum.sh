@@ -38,7 +38,6 @@ git clone git@github.com:broadinstitute/2015_09_01_ALS_Therapeutics_WoolfLab_Kas
 
 echo 'retrieve images'
 source activate awscli
-aws s3 cp --recursive "${S3DIR}" "${IMAGEDIR}" 
 aws logs create-log-group --log-group-name "${DATASET}"
 source deactivate awscli
 
@@ -99,4 +98,7 @@ echo "Illum Complete!"
 
 sudo umount /mnt/ebs
 
-sudo shutdown -h now
+source activate awscli
+EBS_ID=$( cat ~/ebs_id.txt )
+aws ec2 detach-volume --volume-id "${EBS_ID}"
+source deactivate awscli

@@ -23,7 +23,7 @@ data "terraform_remote_state" "vpc" {
 
     bucket  = "imaging-platform-terraform-remote-backend"
 
-    key     = "${vpc_key}"
+    key     = "${var.vpc_key}"
 
     region  = "${var.region}"
 
@@ -39,7 +39,7 @@ data "terraform_remote_state" "ebs" {
 
     bucket  = "imaging-platform-terraform-remote-backend"
 
-    key     = "${ebs_key}"
+    key     = "${var.ebs_key}"
 
     region  = "${var.region}"
 

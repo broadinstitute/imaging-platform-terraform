@@ -1,3 +1,7 @@
+variable "ami" {}
+
+variable "availability_zone" {}
+
 variable "aws_credentials" {}
 
 variable "aws_key_name" {}
@@ -10,9 +14,7 @@ variable "instance_type" {}
 
 variable "private_key" {}
 
-variable "script_name" {}
-
-variable "spot_price" {}
+variable "region" {}
 
 variable "vpc_key" {}
 
@@ -34,7 +36,7 @@ data "terraform_remote_state" "vpc" {
 }
 
 
-resource "aws_spot_instance_request" "imaging-platform-terraform-load-images" {
+resource "aws_instance" "imaging-platform-terraform-load-images" {
   ami                     = "${var.ami}"
 
   associate_public_ip_address = true
@@ -43,11 +45,11 @@ resource "aws_spot_instance_request" "imaging-platform-terraform-load-images" {
 
   connection {
 
-    user                = "ubuntu"
+    host                = "${aws_instance.imaging-platform-terraform-load-images.public_ip}"
 
     private_key         = "${file("${var.private_key}")}"
 
-    host                = "${aws_spot_instance_request.imaging-platform-terraform-load-images.public_ip}"
+    user                = "ubuntu"
 
   }
 
@@ -81,20 +83,6 @@ resource "aws_spot_instance_request" "imaging-platform-terraform-load-images" {
 
   }
 
-  provisioner "remote-exec" {
-
-    scripts = [
-
-      "${var.script_name}"
-
-      ]
-
-  }
-
-  spot_price              = "${var.spot_price}"
-
-  spot_type               = "one-time"
-
   subnet_id               = "${data.terraform_remote_state.vpc.subnet_id}"
 
   tags {
@@ -105,8 +93,6 @@ resource "aws_spot_instance_request" "imaging-platform-terraform-load-images" {
 
   vpc_security_group_ids  = ["${data.terraform_remote_state.vpc.sg_id}"]
 
-  wait_for_fulfillment    = true
-
 }
 
 
@@ -114,7 +100,7 @@ resource "aws_volume_attachment" "imaging-platform-terraform-images-att" {
 
   device_name = "/dev/sdh"
 
-  instance_id = "${aws_spot_instance_request.imaging-platform-terraform-load-images.id}"
+  instance_id = "${aws_instance.imaging-platform-terraform-load-images.id}"
 
   volume_id   = "${aws_ebs_volume.imaging-platform-terraform-images.id}"
 

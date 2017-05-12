@@ -37,3 +37,13 @@ resource "aws_iam_policy_attachment" "imaging-platform-terraform-AmazonEC2FullAc
     roles = ["${aws_iam_role.imaging-platform-terraform.name}"]
 
 }
+
+resource "aws_iam_policy_attachment" "imaging-platform-terraform-CloudWatchLogsFullAccess" {
+
+    name = "imaging-platform-terraform-CloudWatchLogsFullAccess"
+
+    policy_arn = "arn:aws:iam::aws:policy/CloudWatchLogsFullAccess"
+
+    roles = ["${aws_iam_role.imaging-platform-terraform.name}"]
+
+}

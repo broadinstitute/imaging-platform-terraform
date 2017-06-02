@@ -1,3 +1,5 @@
+variable "ami" {}
+
 variable "aws_credentials" {}
 
 variable "aws_key_name" {}

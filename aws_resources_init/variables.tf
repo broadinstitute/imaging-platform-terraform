@@ -1,3 +1,5 @@
+variable "var_vpc_id" {}
+
 variable "availability_zone" {
 
   default = "us-east-1a"
@@ -18,6 +20,6 @@ variable "region"{
 
 variable "vpc_id"{
 
-  default = "vpc-35149752"
+  default = "${var.var_vpc_key}"
 
 }

@@ -6,7 +6,7 @@ data "terraform_remote_state" "vpc" {
 
     bucket = "imaging-platform-terraform-remote-backend"
 
-    key = "aws_resources_init/terraform.tfstate"
+    key = "${var.vpc_key}"
 
     region = "${var.region}"
 

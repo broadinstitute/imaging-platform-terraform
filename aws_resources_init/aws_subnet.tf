@@ -11,7 +11,7 @@ resource "aws_subnet" "imaging-platform-terraform-cellprofiler" {
   tags {
 
       Name = "imaging-platform-terraform-cellprofiler"
-      
+
   }
 
     vpc_id = "${var.vpc_id}"

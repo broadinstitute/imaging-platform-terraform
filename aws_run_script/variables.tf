@@ -1,11 +1,19 @@
-variable "availability_zone" {
+variable "ami" {}
 
-  default = "us-east-1a"
+variable "availability_zone" {}
 
-}
+variable "aws_credentials" {}
 
-variable "region"{
+variable "aws_key_name" {}
 
-  default = "us-east-1"
+variable "ebs_key" {}
 
-}
+variable "github_key" {}
+
+variable "github_pub" {}
+
+variable "instance_type" {}
+
+variable "private_key" {}
+
+variable "region" {}

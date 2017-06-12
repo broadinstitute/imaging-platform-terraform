@@ -1,22 +1,3 @@
-variable "ami" {}
-
-variable "aws_credentials" {}
-
-variable "aws_key_name" {}
-
-variable "ebs_key" {}
-
-variable "github_key" {}
-
-variable "github_pub" {}
-
-variable "instance_type" {}
-
-variable "private_key" {}
-
-variable "vpc_key" {}
-
-
 data "terraform_remote_state" "vpc" {
 
   backend ="s3"
@@ -50,6 +31,7 @@ data "terraform_remote_state" "ebs" {
 }
 
 resource "aws_instance" "imaging-platform-terraform-run-script" {
+
   ami                     = "${var.ami}"
 
   associate_public_ip_address = true

@@ -1,5 +1,3 @@
-variable "vpc_id" {}
-
 resource "aws_security_group" "imaging-platform-terraform-cellprofiler" {
 
   description = "SSH, HTTP, HTTPS, MySQL/Aurora"

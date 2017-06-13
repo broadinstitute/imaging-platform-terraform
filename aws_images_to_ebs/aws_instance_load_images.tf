@@ -20,7 +20,7 @@ resource "aws_instance" "imaging-platform-terraform-load-images" {
 
   associate_public_ip_address = true
 
-  availability_zone       = "${var.availability_zone}"
+  availability_zone       = "${data.terraform_remote_state.vpc.subnet_availability_zone}"
 
   connection {
 

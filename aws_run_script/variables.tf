@@ -17,3 +17,5 @@ variable "instance_type" {}
 variable "private_key" {}
 
 variable "region" {}
+
+variable "vpc_key" {}

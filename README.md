@@ -14,3 +14,6 @@ This repository, and related demos, has exclusively been tested in a Linux envir
 1. `terraform plan` and `terraform apply`
 
 A bucket is created that will store state information for future infrastructure.
+
+# aws_run_cellprofiler
+Use this module to use a single EC2 instance to process a set of images.

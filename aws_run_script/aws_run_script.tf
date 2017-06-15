@@ -78,6 +78,12 @@ resource "aws_instance" "imaging-platform-terraform-run-script" {
 
   }
 
+  root_block_device {
+
+    volume_size           = "${var.root_block_device_volume_size}"
+
+  }
+
   subnet_id               = "${data.terraform_remote_state.vpc.subnet_id}"
 
   tags {

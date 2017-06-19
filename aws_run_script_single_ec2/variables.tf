@@ -1,7 +1,5 @@
 variable "ami" {}
 
-variable "availability_zone" {}
-
 variable "aws_credentials" {}
 
 variable "aws_key_name" {}

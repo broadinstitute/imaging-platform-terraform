@@ -30,7 +30,7 @@ data "terraform_remote_state" "ebs" {
 
 }
 
-resource "aws_instance" "imaging-platform-terraform-run-script" {
+resource "aws_instance" "imaging-platform-terraform-run-script-single-ec2" {
 
   ami                     = "${var.ami}"
 
@@ -40,7 +40,7 @@ resource "aws_instance" "imaging-platform-terraform-run-script" {
 
   connection {
 
-    host                = "${aws_instance.imaging-platform-terraform-run-script.public_ip}"
+    host                = "${aws_instance.imaging-platform-terraform-run-script-single-ec2.public_ip}"
 
     private_key         = "${file("${var.private_key}")}"
 
@@ -88,7 +88,7 @@ resource "aws_instance" "imaging-platform-terraform-run-script" {
 
   tags {
 
-    Name = "imaging-platform-terraform-run-script"
+    Name = "imaging-platform-terraform-run-script-single-ec2"
 
   }
 

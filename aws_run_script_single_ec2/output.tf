@@ -1,6 +1,6 @@
 output "id" {
 
-  value = "${module.imaging-platform-terraform-run-script-single-ec2.id}"
+  value = "${aws_instance.imaging-platform-terraform-run-script-single-ec2.id}"
 
 }
 

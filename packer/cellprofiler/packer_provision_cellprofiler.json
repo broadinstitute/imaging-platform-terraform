@@ -9,6 +9,14 @@
     "associate_public_ip_address" : true,
     "iam_instance_profile" : "s3-imaging-platform-role",
     "instance_type": "c4.large",
+    "launch_block_device_mappings": [
+      {
+        "device_name": "/dev/sda1",
+        "volume_size": 20,
+        "volume_type": "gp2",
+        "delete_on_termination": true
+      }
+    ],
     "region": "us-east-1",
     "secret_key": "{{user `aws_secret_key`}}",
     "security_group_ids": ["sg-c28c51bf"],
@@ -16,7 +24,6 @@
     "ssh_username": "ubuntu",
     "subnet_id" : "subnet-d2d5c7a4",
     "type" : "amazon-ebs",
-    "volume_size" : "20",
     "vpc_id" : "vpc-35149752"
   }],
   "provisioners": [{

@@ -14,6 +14,8 @@ variable "private_key" {}
 
 variable "region" {}
 
+variable "root_block_device_volume_size" {}
+
 variable "size" {}
 
 variable "vpc_key" {}

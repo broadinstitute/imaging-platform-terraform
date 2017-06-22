@@ -1,6 +1,6 @@
 resource "aws_ebs_volume" "imaging-platform-terraform-images" {
 
-  availability_zone = "${var.availability_zone}"
+  availability_zone = "${data.terraform_remote_state.vpc.subnet_availability_zone}"
 
   size              = "${var.size}"
 

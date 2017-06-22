@@ -62,6 +62,14 @@ resource "aws_instance" "imaging-platform-terraform-run-script-single-ec2" {
 
   }
 
+  provisioner "file" {
+
+    source = "${var.private_key}"
+
+    destination = "~/.ssh/private_key.pem"
+
+  }
+
   root_block_device {
 
     volume_size           = "${var.root_block_device_volume_size}"

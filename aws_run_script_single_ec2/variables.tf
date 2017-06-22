@@ -4,8 +4,6 @@ variable "aws_credentials" {}
 
 variable "aws_key_name" {}
 
-variable "ebs_key" {}
-
 variable "github_key" {}
 
 variable "github_pub" {}

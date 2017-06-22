@@ -14,22 +14,6 @@ data "terraform_remote_state" "vpc" {
 
 }
 
-data "terraform_remote_state" "ebs" {
-
-  backend ="s3"
-
-  config {
-
-    bucket  = "imaging-platform-terraform-remote-backend"
-
-    key     = "${var.ebs_key}"
-
-    region  = "${var.region}"
-
-  }
-
-}
-
 resource "aws_instance" "imaging-platform-terraform-run-script-single-ec2" {
 
   ami                     = "${var.ami}"

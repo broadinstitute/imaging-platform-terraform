@@ -80,7 +80,7 @@ resource "aws_instance" "imaging-platform-terraform-run-script-single-ec2" {
 
   tags {
 
-    Name = "imaging-platform-terraform-run-script-single-ec2"
+    Name = "${var.tag_name}"
 
   }
 

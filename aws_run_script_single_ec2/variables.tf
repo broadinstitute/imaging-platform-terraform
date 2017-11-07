@@ -16,4 +16,6 @@ variable "region" {}
 
 variable "root_block_device_volume_size" {}
 
+variable "tag_name" {}
+
 variable "vpc_key" {}
